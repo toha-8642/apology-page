@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>For Monalisa ❤️</title>
+  <title>For Mona 🖤</title>
   <style>
     /* Basic Reset */
     * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -13,7 +13,8 @@
       justify-content: center;
       align-items: center;
       font-family: 'Segoe UI', sans-serif;
-      background: linear-gradient(135deg, #ff9a9e, #fad0c4);
+      /* Changed to a more neutral/elegant gradient for the black heart theme */
+      background: linear-gradient(135deg, #2c3e50, #bdc3c7);
       overflow: hidden;
       text-align: center;
       padding: 20px;
@@ -24,12 +25,13 @@
       padding: 25px;
       max-width: 420px;
       border-radius: 20px;
-      box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+      box-shadow: 0 20px 40px rgba(0,0,0,0.3);
       animation: fadeIn 1s ease;
       position: relative;
     }
 
-    h1 { color: #e63946; margin-bottom: 15px; font-size: 1.8em; }
+    /* Heading color changed to dark gray/black */
+    h1 { color: #222; margin-bottom: 15px; font-size: 1.8em; }
     p { font-size: 1em; line-height: 1.6; color: #333; margin-bottom: 10px; }
 
     .heart { font-size: 50px; animation: pulse 1.5s infinite; }
@@ -44,12 +46,12 @@
       50% { transform: scale(1.2); }
     }
 
-    /* Confetti circles */
+    /* Confetti circles - changed to grayscale/black palette */
     .confetti {
       position: absolute;
       width: 10px;
       height: 10px;
-      background: #e63946;
+      background: #000;
       border-radius: 50%;
       top: -10px;
       animation: fall 3s linear infinite;
@@ -70,14 +72,15 @@
 <script>
   const maxViews = 1; // One-time open
   const views = localStorage.getItem("apology_views") || 0;
-  const name = "Monalisa"; // Her name
+  const name = "Mona"; // Her name
 
   function showConfetti() {
     for (let i=0;i<30;i++){
       const conf = document.createElement('div');
       conf.className = 'confetti';
       conf.style.left = Math.random()*100 + '%';
-      conf.style.background = ['#e63946','#f1c0c0','#ffadad','#ff6b6b'][Math.floor(Math.random()*4)];
+      // Colors changed to match the black heart theme
+      conf.style.background = ['#000000','#333333','#7f8c8d','#bdc3c7'][Math.floor(Math.random()*4)];
       conf.style.animationDuration = (2+Math.random()*2)+'s';
       document.body.appendChild(conf);
       setTimeout(() => conf.remove(), 3000);
@@ -88,20 +91,20 @@
     localStorage.setItem("apology_views", Number(views)+1);
     document.body.innerHTML = `
       <div class="popup">
-        <div class="heart">❤️</div>
+        <div class="heart">🖤</div>
         <h1>I’m Really Sorry, ${name}</h1>
         <p>Narazgi tumhari haq hai, gila mujhe bhi hai,<br>
         Magar tumse door rehna, ye saza mujhe nahi chaiye.</p>
         <p>Ek baar dil se maaf kar do jaan,<br>
         Tumhari khamoshi se zyada kuch bhi nahi dukhata mujhe.</p>
-        <p>— Always yours 💖</p>
+        <p>— Always yours 🖤</p>
       </div>
     `;
     showConfetti();
   } else {
     document.body.innerHTML = `
       <div class="popup">
-        <h1>💔</h1>
+        <h1>🖤</h1>
         <p>এই মেসেজটা শুধু ${name}-এর জন্য ছিল…</p>
       </div>
     `;
