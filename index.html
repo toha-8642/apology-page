@@ -4,92 +4,58 @@
   <meta charset="UTF-8">
   <title>For Mona 🖤</title>
   <style>
-    /* Basic Reset */
     * { margin: 0; padding: 0; box-sizing: border-box; }
-
     body {
       height: 100vh;
       display: flex;
       justify-content: center;
       align-items: center;
       font-family: 'Segoe UI', sans-serif;
-      /* Changed to a more neutral/elegant gradient for the black heart theme */
       background: linear-gradient(135deg, #2c3e50, #bdc3c7);
       overflow: hidden;
       text-align: center;
       padding: 20px;
     }
-
     .popup {
       background: white;
-      padding: 25px;
-      max-width: 420px;
+      padding: 30px;
+      width: 90%;
+      max-width: 450px;
       border-radius: 20px;
       box-shadow: 0 20px 40px rgba(0,0,0,0.3);
       animation: fadeIn 1s ease;
-      position: relative;
     }
-
-    /* Heading color changed to dark gray/black */
     h1 { color: #222; margin-bottom: 15px; font-size: 1.8em; }
-    p { font-size: 1em; line-height: 1.6; color: #333; margin-bottom: 10px; }
-
-    .heart { font-size: 50px; animation: pulse 1.5s infinite; }
-
-    @keyframes fadeIn {
-      from { opacity: 0; transform: scale(0.8); }
-      to { opacity: 1; transform: scale(1); }
-    }
-
-    @keyframes pulse {
-      0%, 100% { transform: scale(1); }
-      50% { transform: scale(1.2); }
-    }
-
-    /* Confetti circles - changed to grayscale/black palette */
-    .confetti {
-      position: absolute;
-      width: 10px;
-      height: 10px;
-      background: #000;
-      border-radius: 50%;
-      top: -10px;
-      animation: fall 3s linear infinite;
-    }
-
-    @keyframes fall {
-      0% { transform: translateY(0) rotate(0deg); opacity: 1; }
-      100% { transform: translateY(600px) rotate(360deg); opacity: 0; }
-    }
-
-    @media (max-width: 480px) {
-      .popup { padding: 20px; font-size: 14px; }
-    }
+    p { font-size: 1.1em; line-height: 1.6; color: #333; margin-bottom: 15px; }
+    .heart { font-size: 60px; margin-bottom: 10px; animation: pulse 1.5s infinite; }
+    @keyframes fadeIn { from { opacity: 0; transform: scale(0.9); } to { opacity: 1; transform: scale(1); } }
+    @keyframes pulse { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.1); } }
+    .confetti { position: absolute; width: 8px; height: 8px; border-radius: 50%; top: -10px; animation: fall 3s linear infinite; }
+    @keyframes fall { 0% { transform: translateY(0); opacity: 1; } 100% { transform: translateY(100vh); opacity: 0; } }
   </style>
 </head>
 <body>
-
+<div id="content"></div>
 <script>
-  const maxViews = 1; // One-time open
+  const name = "Mona";
+  // Setting maxViews very high so it doesn't lock you out
+  const maxViews = 9999; 
   const views = localStorage.getItem("apology_views") || 0;
-  const name = "Mona"; // Her name
 
   function showConfetti() {
-    for (let i=0;i<30;i++){
+    for (let i=0; i<40; i++){
       const conf = document.createElement('div');
       conf.className = 'confetti';
       conf.style.left = Math.random()*100 + '%';
-      // Colors changed to match the black heart theme
-      conf.style.background = ['#000000','#333333','#7f8c8d','#bdc3c7'][Math.floor(Math.random()*4)];
+      conf.style.background = ['#000','#444','#888','#ccc'][Math.floor(Math.random()*4)];
       conf.style.animationDuration = (2+Math.random()*2)+'s';
       document.body.appendChild(conf);
-      setTimeout(() => conf.remove(), 3000);
     }
   }
 
   if (views < maxViews) {
     localStorage.setItem("apology_views", Number(views)+1);
-    document.body.innerHTML = `
+    document.getElementById("content").innerHTML = `
       <div class="popup">
         <div class="heart">🖤</div>
         <h1>I’m Really Sorry, ${name}</h1>
@@ -101,15 +67,7 @@
       </div>
     `;
     showConfetti();
-  } else {
-    document.body.innerHTML = `
-      <div class="popup">
-        <h1>🖤</h1>
-        <p>HI MONA</p>
-      </div>
-    `;
   }
 </script>
-
 </body>
 </html>
